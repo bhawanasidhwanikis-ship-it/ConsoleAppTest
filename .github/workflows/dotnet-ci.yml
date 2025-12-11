@@ -1,0 +1,29 @@
+name: .NET CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Restore dependencies
+      run: dotnet restore ConsoleAppTest.sln
+
+    - name: Build solution
+      run: dotnet build ConsoleAppTest.sln --no-restore --configuration Release
+
+    - name: Run tests
+      run: dotnet test ConsoleAppTest.Tests/ConsoleAppTest.Tests.csproj --no-build --verbosity normal
