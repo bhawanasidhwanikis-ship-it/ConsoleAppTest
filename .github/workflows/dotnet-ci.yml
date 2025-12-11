@@ -26,4 +26,4 @@ jobs:
       run: dotnet build ConsoleAppTest.sln --no-restore --configuration Release
 
     - name: Run tests
-      run: dotnet test ConsoleAppTest.Tests/ConsoleAppTest.Tests.csproj --no-build --verbosity normal
+      run: dotnet test ConsoleAppTest.Tests/ConsoleAppTest.Tests.csproj --verbosity normal
